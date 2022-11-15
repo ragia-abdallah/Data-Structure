@@ -151,6 +151,27 @@ int GetCount()//count of nodes in linked list
 
 
 int GetDataByIndex(int index)//give index to return
+{
+    int i=1;
+    int output=0;
+    Node *current = head;
 
+    while(current != NULL)
+    {
+        if (index==i){
+        output=current->Data;
+        return output;
+        }
+
+        i++;
+        current = current->Next;
+    }
+    printf("Error. Index not in List.");
+    return NULL;
+
+
+
+
+}
 
 #endif // LINKEDLIST_H
