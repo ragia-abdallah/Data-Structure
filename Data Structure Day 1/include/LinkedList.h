@@ -134,15 +134,18 @@ void InsertAfter(int data, int afterData)//add item data after item afterData
 
 }
 
-
-
-
-
-
-
-
 int GetCount()//count of nodes in linked list
+{
+    Node *current = head;
+    int counter=0;
 
+    while(current != NULL)
+    {
+        counter++;
+        current = current->Next;
+    }
+    return counter;
+}
 
 
 
