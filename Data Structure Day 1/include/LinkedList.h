@@ -105,10 +105,49 @@ void Remove(int data)
     free(node);
 }
 
-void InsertAfter(int data, int afterData);//add item data after item afterData
+void InsertAfter(int data, int afterData)//add item data after item afterData
+{
 
-int GetCount();//count of nodes in linked list
+    Node* checkpoint = GetNodeByData(afterData);
+    if (checkpoint == NULL){
+        printf("Error. AfterData not found.");
+        return;
+    }
 
-int GetDataByIndex(int index);//give index to return
+    Node*newNode = malloc(sizeof(Node));
+
+    newNode->Data = data;
+
+    if (checkpoint == tail){
+        tail = newNode;
+        newNode->Next = NULL;
+        newNode->Prev = checkpoint;
+        checkpoint->Next = newNode;
+
+    }
+    else {
+        checkpoint->Next->Prev = newNode;
+        newNode->Next = checkpoint->Next;
+        newNode->Prev = checkpoint;
+        checkpoint->Next = newNode;
+    }
+
+}
+
+
+
+
+
+
+
+
+int GetCount()//count of nodes in linked list
+
+
+
+
+
+int GetDataByIndex(int index)//give index to return
+
 
 #endif // LINKEDLIST_H
