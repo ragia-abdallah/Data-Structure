@@ -12,7 +12,7 @@ struct Node
 typedef struct Stack
 {
     Node *item;
-    int *top;
+    int *top;//need to be initiated as NULL
 }Stack;
 
 void Push(Stack *stk, int data)

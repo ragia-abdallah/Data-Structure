@@ -3,13 +3,25 @@
 
 #define MaxQSize 5
 
+struct Node
+{
+    int Data;
+    Node *Prev;
+};
+
+typedef struct Stack
+{
+    Node *item;
+    int *top;
+}Stack;
+
 typedef struct Queue
 {
-    int arr[MaxQSize];
-    int front, rear;
+    Node *item;
+    int *head, *tail;//need to be initiated as NULL
 
 }Queue;
-
+/*
 void EnQueue(Queue *q, int data)
 {
     if(q->rear == MaxQSize - 1)
@@ -38,5 +50,5 @@ int DeQueue(Queue *q, int *data)
         return 1;
     }
 }
-
+*/
 #endif // QUEUE_H
