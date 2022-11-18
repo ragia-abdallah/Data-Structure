@@ -30,9 +30,9 @@ int Pop(Stack *stk, int *data)
         return 0;
     }
 
-    Node *item = stk->top;
+    Node *temp = stk->top;
 
-    *data = item->Data;
+    *data = temp->Data;
     stk->top--;
 
     return 1;
@@ -45,7 +45,9 @@ int Peek(Stack *stk, int *data)
         return 0;
     }
 
-    *data = stk->top;
+    Node *temp = stk->top;
+
+    *data = temp->Data;
 
     return 1;
 }

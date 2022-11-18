@@ -16,10 +16,12 @@ int main()
     {
         printf("\npop = %d",popResult);
     }
+
     else
     {
         printf("\nError");
     }
+
 
     int peekResult =0;
 
@@ -28,15 +30,11 @@ int main()
         peekResult = stk.top;
         printf("\npeek = %d",peekResult);
     }
+
     else
     {
         printf("\nError");
     }
-
-
-
-
-
 
 
     //printf("Hello world!\n");

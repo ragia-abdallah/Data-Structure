@@ -6,14 +6,8 @@
 struct Node
 {
     int Data;
-    Node *Prev;
+    Node *Next;
 };
-
-typedef struct Stack
-{
-    Node *item;
-    int *Prev, *Next;
-}Stack;
 
 typedef struct Queue
 {
@@ -26,29 +20,29 @@ void EnQueue(Queue *q, int data)
 {
     Node *newNode = malloc(sizeof(Node));
     newNode->Data = data;
-    newNode->Prev = Queue->head;
-    newNode->Next = Queue->tail;
-    stk->top = newNode;
 
     if(q->head == NULL)
-        q->head++;
+    {
+        Queue->head = newNode;
+    }
 
-    q->rear++;
-    q->arr[q->rear] = data;
+        newNode->Next = Queue->tail;
+        Queue->tail = newNode;
 }
 
 int DeQueue(Queue *q, int *data)
 {
-    q->front++;
+    //q->head;
 
-    if(q->front == -1)
+    if(q->head == NULL)
     {
         return 0;
     }
     else
     {
-        *data = q->arr[q->front];
-        q->front++;
+        Node *temp = q->head
+        *data = temp->Data;
+        q->head=temp->Next;
 
         return 1;
     }
