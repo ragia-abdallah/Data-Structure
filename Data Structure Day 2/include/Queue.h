@@ -12,7 +12,7 @@ struct Node
 typedef struct Stack
 {
     Node *item;
-    int *top;
+    int *Prev, *Next;
 }Stack;
 
 typedef struct Queue
@@ -21,14 +21,17 @@ typedef struct Queue
     int *head, *tail;//need to be initiated as NULL
 
 }Queue;
-/*
+
 void EnQueue(Queue *q, int data)
 {
-    if(q->rear == MaxQSize - 1)
-        return;
+    Node *newNode = malloc(sizeof(Node));
+    newNode->Data = data;
+    newNode->Prev = Queue->head;
+    newNode->Next = Queue->tail;
+    stk->top = newNode;
 
-    if(q->front == -1)
-        q->front++;
+    if(q->head == NULL)
+        q->head++;
 
     q->rear++;
     q->arr[q->rear] = data;
@@ -50,5 +53,5 @@ int DeQueue(Queue *q, int *data)
         return 1;
     }
 }
-*/
+
 #endif // QUEUE_H

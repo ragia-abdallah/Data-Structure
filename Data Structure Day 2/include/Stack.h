@@ -20,7 +20,7 @@ void Push(Stack *stk, int data)
     Node *newNode = malloc(sizeof(Node));
     newNode->Data = data;
     newNode->Prev = stk->top;
-    stk->top = newNode;
+    stk->top = &newNode;
 }
 
 int Pop(Stack *stk, int *data)
@@ -30,7 +30,9 @@ int Pop(Stack *stk, int *data)
         return 0;
     }
 
-    *data = stk->top;
+    Node *item = stk->top;
+
+    *data = item->Data;
     stk->top--;
 
     return 1;

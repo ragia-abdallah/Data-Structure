@@ -10,7 +10,7 @@ int main()
     Push(&stk, 20);
     Push(&stk, 30);
 
-    int popResult =0;
+    int *popResult =0;
 
     if (Pop(&stk, &popResult)==1)
     {
@@ -25,6 +25,7 @@ int main()
 
     if (Peek(&stk, &peekResult)==1)
     {
+        peekResult = stk.top;
         printf("\npeek = %d",peekResult);
     }
     else
