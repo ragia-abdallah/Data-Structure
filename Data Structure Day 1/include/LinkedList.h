@@ -156,6 +156,12 @@ int GetDataByIndex(int index)//give index to return
     int output=0;
     Node *current = head;
 
+    if (index<i)
+    {
+        printf("Error. Index not in List.");
+        return NULL;
+    }
+
     while(current != NULL)
     {
         if (index==i){
@@ -168,9 +174,6 @@ int GetDataByIndex(int index)//give index to return
     }
     printf("Error. Index not in List.");
     return NULL;
-
-
-
 
 }
 

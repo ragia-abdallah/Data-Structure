@@ -1,35 +1,50 @@
 #ifndef STACK_H
 #define STACK_H
 
-#define MaxSize 5
+typedef struct Node Node;
+
+struct Node
+{
+    int Data;
+    Node *Prev;
+};
 
 typedef struct Stack
 {
-    int arr[MaxSize];
-    int top;
+    Node *item;
+    int *top;
 }Stack;
 
-int Push(Stack *stk, int data)
+void Push(Stack *stk, int data)
 {
-    if(stk->top == MaxSize - 1)
-        return 0;
-
-    stk->top++;
-    stk->arr[stk->top] = data;
-    return 1;
+    Node *newNode = malloc(sizeof(Node));
+    newNode->Data = data;
+    newNode->Prev = stk->top;
+    stk->top = newNode;
 }
 
 int Pop(Stack *stk, int *data)
 {
-    if(stk->top == -1)
+    if(stk->top == NULL)
     {
         return 0;
     }
 
-    *data = stk->arr[stk->top];
+    *data = stk->top;
     stk->top--;
 
     return 1;
 }
 
+int Peek(Stack *stk, int *data)
+{
+    if(stk->top == NULL)
+    {
+        return 0;
+    }
+
+    *data = stk->top;
+
+    return 1;
+}
 #endif // STACK_H
