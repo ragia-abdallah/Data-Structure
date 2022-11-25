@@ -152,18 +152,29 @@ void InsertionSort(int *data, int size)
 }
 */
 
-int BinarySearch(int item, int *data, int size)
+int BinarySearch(Node *head, Node *tail, int item)
 {
+
+    BubbleSort(head, tail);
+    int size = GetListCount(head);
+    Node *current;
+    int nodeData;
+
     int minIndex = 0, maxIndex = size - 1, midIndex;
 
     while(minIndex <= maxIndex)
     {
         midIndex = (minIndex + maxIndex) / 2;
 
-        if(item == data[midIndex])
+        if(GetNodeByIndex(head,midIndex,current))
+        {
+            nodeData = current->Data;
+        }
+
+        if(nodeData == item)
             return midIndex;
 
-        if(item > data[midIndex])
+        if(item > nodeData)
             minIndex = midIndex + 1;
         else
             maxIndex = midIndex - 1;
