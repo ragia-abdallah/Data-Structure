@@ -177,4 +177,30 @@ int GetDataByIndex(int index)//give index to return
 
 }
 
+//give index to return node
+int GetNodeByIndex(Node *head, int *data, int index, Node *result)//give index to return
+{
+    int i=0;
+    Node *current = head;
+
+    if (index<0)
+    {
+        return 0;
+    }
+
+    while(current != NULL)
+    {
+        if (index==i){
+        result = current;
+        return 1;
+        }
+
+        i++;
+        current = current->Next;
+    }
+    ;
+    return 0;
+
+}
+
 #endif // LINKEDLIST_H
