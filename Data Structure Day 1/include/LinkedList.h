@@ -9,40 +9,40 @@ struct Node
     Node *Prev, *Next;
 };
 
-/*typedef struct LinkedList
+typedef struct LinkedList
 {
     Node *head, *tail;
 
-}LinkedList;*/
+}LinkedList;
 
-Node *head = NULL, *tail = NULL;
+//Node *head = NULL, *tail = NULL;
 
 /*void Add(LinkedList *L, int data)
 {
     L->head
 }*/
 
-void Add(int data)
+void Add(LinkedList *L, int data)
 {
     Node *newNode = malloc(sizeof(Node));
     newNode->Data = data;
     newNode->Prev = newNode->Next = NULL;
 
-    if(head == NULL)
+    if(L->head == NULL)
     {
-        head = tail = newNode;
+        L->head = L->tail = newNode;
     }
     else
     {
-        tail->Next = newNode;
-        newNode->Prev = tail;
-        tail = newNode;
+        L->tail->Next = newNode;
+        newNode->Prev = L->tail;
+        L->tail = newNode;
     }
 }
 
-void Display()
+void Display(LinkedList *L)
 {
-    Node *current = head;
+    Node *current = L->head;
 
     while(current != NULL)
     {
@@ -51,9 +51,9 @@ void Display()
     }
 }
 
-Node* GetNodeByData(int data)
+Node* GetNodeByData(LinkedList *L, int data)
 {
-    Node *current = head;
+    Node *current = L->head;
 
     while(current != NULL)
     {
@@ -66,29 +66,29 @@ Node* GetNodeByData(int data)
     return NULL;
 }
 
-void Remove(int data)
+void Remove(LinkedList *L, int data)
 {
-    Node *node = GetNodeByData(data);
+    Node *node = GetNodeByData(L, data);
 
     if(node == NULL)
         return;
 
-    if(node == head)
+    if(node == L->head)
     {
-        if(head == tail)
+        if(L->head == L->tail)
         {
-            head = tail = NULL;
+            L->head = L->tail = NULL;
         }
         else
         {
-            head = head->Next;
-            head->Prev = NULL;
+            L->head = L->head->Next;
+            L->head->Prev = NULL;
         }
     }
-    else if(node == tail)
+    else if(node == L->tail)
     {
-        tail = tail->Prev;
-        tail->Next = NULL;
+        L->tail = L->tail->Prev;
+        L->tail->Next = NULL;
     }
     else
     {
@@ -105,38 +105,36 @@ void Remove(int data)
     free(node);
 }
 
-void InsertAfter(int data, int afterData)//add item data after item afterData
+
+void InsertAfter(LinkedList *L, int data, int newData) // V2
 {
+    Node *newNode = malloc(sizeof(Node));
+    newNode->Data = newData;
+    newNode->Next = newNode->Prev = NULL;
 
-    Node* checkpoint = GetNodeByData(afterData);
-    if (checkpoint == NULL){
-        printf("Error. AfterData not found.");
-        return;
+    Node *current = GetNodeByData(L, data);
+    if (current == NULL)
+    {
+        L->head = newNode;
     }
-
-    Node*newNode = malloc(sizeof(Node));
-
-    newNode->Data = data;
-
-    if (checkpoint == tail){
-        tail = newNode;
-        newNode->Next = NULL;
-        newNode->Prev = checkpoint;
-        checkpoint->Next = newNode;
-
+    else if (current == L->tail)
+    {
+        newNode->Prev = L->tail;
+        L->tail->Next = newNode;
+        L->tail = newNode;
     }
-    else {
-        checkpoint->Next->Prev = newNode;
-        newNode->Next = checkpoint->Next;
-        newNode->Prev = checkpoint;
-        checkpoint->Next = newNode;
+    else
+    {
+        newNode->Prev = current;
+        newNode->Next = current->Next;
+        current->Next->Prev = newNode;
+        current->Next = newNode;
     }
-
 }
 
-int GetCount()//count of nodes in linked list
+int GetCount(LinkedList *L)//count of nodes in linked list
 {
-    Node *current = head;
+    Node *current = L->head;
     int counter=0;
 
     while(current != NULL)
@@ -147,60 +145,21 @@ int GetCount()//count of nodes in linked list
     return counter;
 }
 
-
-
-
-int GetDataByIndex(int index)//give index to return
+int GetNodeByIndex(LinkedList *L, int *data, int index) // V2
 {
-    int i=1;
-    int output=0;
-    Node *current = head;
+    int i=0, check=0;
+    Node *current = L->head;
 
-    if (index<i)
+    for (i=1; i<index; i++)
     {
-        printf("Error. Index not in List.");
-        return NULL;
-    }
+        if (current == NULL)
+            return 0;
 
-    while(current != NULL)
-    {
-        if (index==i){
-        output=current->Data;
-        return output;
-        }
-
-        i++;
         current = current->Next;
     }
-    printf("Error. Index not in List.");
-    return NULL;
+
+    *data = current->Data;
+    return 1;
 
 }
-
-//give index to return node
-int GetNodeByIndex(Node *head, int *data, int index, Node *result)//give index to return
-{
-    int i=0;
-    Node *current = head;
-
-    if (index<0)
-    {
-        return 0;
-    }
-
-    while(current != NULL)
-    {
-        if (index==i){
-        result = current;
-        return 1;
-        }
-
-        i++;
-        current = current->Next;
-    }
-    ;
-    return 0;
-
-}
-
 #endif // LINKEDLIST_H

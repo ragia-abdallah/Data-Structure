@@ -5,15 +5,13 @@
 
 int main()
 {
-    /*LinkedList myList = {.head = NULL, .tail = NULL};
-    Add(&myList, 3);*/
+    LinkedList myList = {.head = NULL, .tail = NULL};
+    Add(&myList, 3);
+    Add(&myList, 5);
+    Add(&myList, 7);
+    Add(&myList, 9);
 
-    Add(3);
-    Add(5);
-    Add(7);
-    Add(9);
-
-    Display();
+    Display(&myList);
 
     return 0;
 }

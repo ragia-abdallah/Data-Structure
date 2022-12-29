@@ -1,0 +1,11 @@
+# depslib dependency file v1.0
+1669482080 source:d:\ragia abdallah\assignments\ds\data structure day 4\main.c
+	<stdio.h>
+	<stdlib.h>
+	"Tree.h"
+
+1672334077 d:\ragia abdallah\assignments\ds\data structure day 4\include\tree.h
+	"LinkedList.h"
+
+1672333547 d:\ragia abdallah\assignments\ds\data structure day 4\include\linkedlist.h
+
